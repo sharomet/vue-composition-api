@@ -15,18 +15,16 @@ export default {
     Users,
     UserForm,
   },
-  setup() {
+  setup () {
 
-    const usersList = ref([
+    let usersList = ref([
       { id: 1, firstName: 'Alex', lastName: 'Smith' },
       { id: 2, firstName: 'John', lastName: 'Anderson' },
       { id: 3, firstName: 'Stas', lastName: 'Cache' },
       { id: 4, firstName: 'Viliam', lastName: 'Craken' },
     ])
 
-    const removeUser = id => {
-      usersList.value = usersList.value.filter(users => users.id !== id)
-    }
+    const removeUser = id => usersList.value = usersList.value.filter(users => users.id !== id)
 
     const addNewUser = ({ firstName, lastName }) => {
       let id = usersList.value.length + 1

@@ -16,6 +16,7 @@ export default {
     UserForm,
   },
   setup() {
+
     const usersList = ref([
       { id: 1, firstName: 'Alex', lastName: 'Smith' },
       { id: 2, firstName: 'John', lastName: 'Anderson' },
@@ -39,7 +40,7 @@ export default {
     return {
       usersList,
       removeUser,
-      addNewUser,
+      addNewUser
     }
   },
 }

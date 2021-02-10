@@ -5,7 +5,9 @@
         <th>#</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th class="text-center">Action</th>
+        <th class="text-center">
+          Action
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -26,11 +28,19 @@ export default {
     UserItem,
   },
   props: {
-    users: Object,
+    users: {
+      type: [Array, Object],
+      default: () => {
+        return {}
+      }
+    }
   },
-  setup(_, { emit }) {
+  emits: [
+    'removeUser'
+  ],
+  setup (_, { emit }) {
     return {
-      removeUser(id) {
+      removeUser (id) {
         emit('removeUser', id)
       },
     }

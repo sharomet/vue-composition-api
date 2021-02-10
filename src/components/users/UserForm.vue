@@ -10,7 +10,7 @@
               class="form-control"
               id="firstName"
               v-model="user.firstName"
-            />
+            >
           </div>
           <div class="form-group col-lg-6">
             <label for="lastName">Last Name</label>
@@ -19,11 +19,13 @@
               class="form-control"
               id="lastName"
               v-model="user.lastName"
-            />
+            >
           </div>
         </div>
         <div class="text-right">
-          <button class="btn btn-primary btn-block">Add User</button>
+          <button class="btn btn-primary btn-block">
+            Add User
+          </button>
         </div>
       </form>
     </div>
@@ -32,7 +34,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       user: {
         firstName: '',
@@ -41,7 +43,7 @@ export default {
     }
   },
   methods: {
-    handleSubmit() {
+    handleSubmit () {
       this.$emit('addNewUser', this.user)
       this.user.firstName = ''
       this.user.lastName = ''

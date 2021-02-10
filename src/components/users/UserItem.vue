@@ -10,7 +10,10 @@
       {{ user.lastName }}
     </td>
     <td class="text-center">
-      <button class="btn btn-danger btn-sm" @click="removeUser(user.id)">
+      <button
+        class="btn btn-danger btn-sm"
+        @click="removeUser(user.id)"
+      >
         x
       </button>
     </td>
@@ -22,7 +25,7 @@ export default {
   props: {
     user: Object,
   },
-  setup(_, { emit }) {
+  setup (_, { emit }) {
     return {
       removeUser (id) {
         emit('removeUser', id)

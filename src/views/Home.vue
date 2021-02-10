@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <UserForm @addNewUser="addNewUser" />
-    <Users :users="usersList" @removeUser="removeUser" />
+    <Users
+      :users="usersList"
+      @removeUser="removeUser"
+    />
   </div>
 </template>
 

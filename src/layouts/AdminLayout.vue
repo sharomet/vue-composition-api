@@ -1,6 +1,16 @@
 <template>
-  <div class="container">
-    <p>AdminLayout</p>
+  <Header />
+  <main class="main">
     <router-view />
-  </div>
+  </main>
 </template>
+
+<script>
+import Header from '@/components/partials/header/Header'
+
+export default {
+  components: {
+    Header
+  }
+}
+</script>

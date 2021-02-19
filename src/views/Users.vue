@@ -1,80 +1,49 @@
 <template>
   <div class="container">
-    <div class="search">
-      <div class="form-group">
-        <label>User Name</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="usersInput"
-        >
+    <div class="row">
+      <div class="col-12">
+        <button @click="handleClickAdd">
+          Add
+        </button>
+        <p>
+          Count {{ count }},
+          Double {{ double }}
+        </p>
       </div>
     </div>
-    <table class="table table-sm table-bordered">
-      <tbody>
-        <tr
-          v-for="user in users"
-          :key="user.id"
-        >
-          <td>
-            {{ user.first_name }}
-          </td>
-          <td>
-            {{ user.last_name }}
-          </td>
-          <td>
-            {{ user.email }}
-          </td>
-          <td>
-            {{ user.company }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+    <ul v-if="users.length > 0">
+      <li
+        v-for="user in users"
+        :key="user.id"
+      >
+        {{ user.first_name }}
+      </li>
+    </ul>
   </div>
 </template>
-
 <script>
-import { ref, onMounted, watch } from 'vue'
-import axios from 'axios'
-
+import { ref, onMounted, computed } from 'vue'
 export default {
-  setup () {
-    let users = ref([])
-    const getUserData = async () =>
-      await axios
-        .get('http://localhost:3000/users')
-        .then(res => (users.value = sortUser(res.data)))
-        .catch(err => console.log(err))
+  setup() {
+    const users = ref([])
+    const fetchUsersData = async () =>
+      await fetch('http://localhost:3000/users')
+              .then(res => res.json())
+              .then(data => users.value = data)
 
-    onMounted(getUserData)
+    onMounted(fetchUsersData)
 
-    const usersInput = ref('')
-    watch(usersInput, () => {
-      users.value.sort(a =>
-        a.first_name.indexOf(usersInput.value) > -1 ? -1 : 0
-      )
-      if (usersInput.value == '') {
-        sortUser(users.value)
-      }
-    })
-
-    const sortUser = data => {
-      return data.sort((a, b) => {
-        if (a.first_name < b.first_name) {
-          return -1
-        }
-        if (a.first_name > b.first_name) {
-          return 1
-        }
-        return 0
-      })
-    }
+    const count = ref(1)
+    const double = computed(() => count.value * 2)
+    const handleClickAdd = () => count.value ++
 
     return {
-      usersInput,
       users,
+      handleClickAdd,
+      count,
+      double
     }
-  },
+  }
 }
 </script>

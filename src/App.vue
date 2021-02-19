@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <!-- <div id="nav">
     <router-link :to="{ name: 'home' }">
       Home
     </router-link> |
@@ -15,6 +15,6 @@
     <router-link :to="{ name: 'dashboard' }">
       Dashboard
     </router-link> 
-  </div>
+  </div> -->
   <router-view />
 </template>

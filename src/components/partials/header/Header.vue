@@ -5,3 +5,9 @@
     </button>
   </header>
 </template>
+
+<style lang="scss">
+.header {
+  grid-area: header;
+}
+</style>
